@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'pass-reset',
     loadChildren: () => import('./pages/pass-reset/pass-reset.module').then( m => m.PassResetPageModule)
   },
+  {
+    path: '**',
+    loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
+  },
+
 ];
 
 @NgModule({
