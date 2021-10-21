@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { PassResetPageRoutingModule } from './pass-reset-routing.module';
 
-import { LoginPage } from './login.page';
+import { PassResetPage } from './pass-reset.page';
 import { MaterialModule } from 'src/app/material/material.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { MaterialModule } from 'src/app/material/material.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule,
-    MaterialModule,
+    PassResetPageRoutingModule,
+    MaterialModule
   ],
-  declarations: [LoginPage]
+  declarations: [PassResetPage]
 })
-export class LoginPageModule {}
+export class PassResetPageModule {}
