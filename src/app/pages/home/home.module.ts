@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { MaterialModule } from 'src/app/material/material.module';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { MaterialModule } from 'src/app/material/material.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ComponentsModule
   ],
   declarations: [HomePage]
 })
