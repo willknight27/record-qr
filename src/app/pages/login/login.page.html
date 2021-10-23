@@ -23,20 +23,20 @@
 
       <ion-card-content>
 
-        <form>
+        <form [formGroup]="formularioLogin" (ngSubmit)="onLogin()">
 
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Usuario</mat-label>
-            <input matInput type="text">
+            <input matInput type="text" formControlName ="user">
           </mat-form-field>
 
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Contraseña</mat-label>
-            <input matInput type="password">
+            <input matInput type="password" formControlName ="password">
           </mat-form-field>
 
           <div class="ion-text-center ion-margin-top">
-            <button class="boton-login" type="submit"  mat-raised-button
+            <button [disabled]="formularioLogin.invalid" class="boton-login" type="submit"  mat-raised-button
               color="primary">INGRESAR</button>
           </div>
 
