@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router, NavigationExtras } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/Interfaces/asistencia-alumnos';
 import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
 
@@ -15,7 +17,10 @@ export class LoginPage implements OnInit {
 
   usuarios: Usuario[];
 
-  constructor(private fb: FormBuilder, private api: ApiAsistenciaService) { }
+  constructor(private router: Router, 
+              private alertCtrl: AlertController,
+              private fb: FormBuilder,
+              private api: ApiAsistenciaService) { }
 
   ngOnInit() {
   }
@@ -27,14 +32,38 @@ export class LoginPage implements OnInit {
 
   });
 
-  onLogin() {
-    console.log(this.formularioLogin.value.user);
+  //Alerta de Datos erroneos
+  async presentAlert(){
+    const alert = await this.alertCtrl.create({
+      header: 'Datos Incorrectos',
+      message: 'Usuario y/o contraseña incorrectos',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
+  onLogin() {
+    
     this.api.getUsuarios().subscribe((data) => {
       this.usuarios = data;
-      const usuario: Usuario = this.usuarios.find(usuario => usuario.username === this.formularioLogin.value.user)
-      console.log(usuario)
+
+      //Valida que usuario y contrasena ingresados son los correctos
+      const usuario: Usuario = this.usuarios.find(usuario => usuario.username === this.formularioLogin.value.user && usuario.password === this.formularioLogin.value.password );
+      
+      //Usuario valido, redirecciona a Home
+      if (usuario) {
+        let navigationExtras: NavigationExtras = {
+          state: {usuarioValido: usuario.nombre}
+        }
+        this.router.navigate(['/home'], navigationExtras)
+      }
+      else {
+        this.presentAlert();
+      } 
     });
+    
+    
+    
 
   }
 
