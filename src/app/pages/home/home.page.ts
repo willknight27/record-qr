@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { PopoverUsuarioComponent } from 'src/app/components/popover-usuario/popover-usuario.component';
 
@@ -10,30 +10,38 @@ import { PopoverUsuarioComponent } from 'src/app/components/popover-usuario/popo
 })
 export class HomePage implements OnInit {
 
-
-  fecha = new Date;
+  usuarioConectado: string;
+  //fecha = new Date;
 
   constructor(private router: Router,
-              private popoverCtrl: PopoverController) {
+    private popoverCtrl: PopoverController,
+    private activedRouter: ActivatedRoute) {
 
-    this.router.navigate(['home/escanear']);
-  }
+    this.activedRouter.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        //asignar parametro del nombre de usuario
+        this.usuarioConectado = this.router.getCurrentNavigation().extras.state.usuarioValido;
+      }
+    });
 
-  ngOnInit() {
-  }
+}
+
+ngOnInit() {
+  this.router.navigate(['home/escanear']);
+}
 
   async presentPopover(ev: any) {
-    const popover = await this.popoverCtrl.create({
-      component: PopoverUsuarioComponent,
-      cssClass: 'my-custom-class',
-      event: ev,
-      translucent: true,
-      mode: 'ios'
-    });
-    await popover.present();
+  const popover = await this.popoverCtrl.create({
+    component: PopoverUsuarioComponent,
+    cssClass: 'my-custom-class',
+    event: ev,
+    translucent: true,
+    mode: 'ios'
+  });
+  await popover.present();
 
-    
-  }
+
+}
 
 
 }

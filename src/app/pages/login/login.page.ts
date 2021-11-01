@@ -56,7 +56,7 @@ export class LoginPage implements OnInit {
       //Usuario valido, redirecciona a Home
       if (usuario) {
         let navigationExtras: NavigationExtras = {
-          state: {usuarioValido: usuario.nombre}
+          state: {usuarioValido: usuario.nombreUsuario}
         }
         this.router.navigate(['/home'], navigationExtras)
       }
