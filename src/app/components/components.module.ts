@@ -4,6 +4,7 @@ import { AsistenciaComponent } from './asistencia/asistencia.component';
 import { EscanearComponent } from './escanear/escanear.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { IonicModule } from '@ionic/angular';
+import { PopoverUsuarioComponent } from './popover-usuario/popover-usuario.component';
 
 
 
@@ -11,7 +12,8 @@ import { IonicModule } from '@ionic/angular';
   declarations: [
     AsistenciaComponent,
     EscanearComponent,
-    PerfilComponent
+    PerfilComponent,
+    PopoverUsuarioComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { IonicModule } from '@ionic/angular';
   exports:[
     AsistenciaComponent,
     EscanearComponent,
-    PerfilComponent
+    PerfilComponent,
+    PopoverUsuarioComponent
   ]
 })
 export class ComponentsModule { }
