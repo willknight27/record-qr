@@ -2,8 +2,10 @@ export interface Usuario {
 
     id: string;
     nombre: string;
-    username: string;
+    nombreUsuario: string;
     email:string;
     password:string;
     carrera:string;
 }
+
+

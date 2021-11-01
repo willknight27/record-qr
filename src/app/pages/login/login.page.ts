@@ -45,10 +45,13 @@ export class LoginPage implements OnInit {
   onLogin() {
     
     this.api.getUsuarios().subscribe((data) => {
+      console.log(data)
       this.usuarios = data;
 
       //Valida que usuario y contrasena ingresados son los correctos
-      const usuario: Usuario = this.usuarios.find(usuario => usuario.username === this.formularioLogin.value.user && usuario.password === this.formularioLogin.value.password );
+      const usuario: Usuario = this.usuarios.find(
+        usuario => usuario.nombreUsuario === this.formularioLogin.value.user
+                && usuario.password === this.formularioLogin.value.password );
       
       //Usuario valido, redirecciona a Home
       if (usuario) {
