@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Usuario } from 'src/app/Interfaces/asistencia-alumnos';
+import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
 
 @Component({
   selector: 'app-pass-reset',
@@ -8,7 +12,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class PassResetPage implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  usuarios: Usuario[];
+
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private api: ApiAsistenciaService,
+              private alertCtrl: AlertController) { }
 
   ngOnInit() {
   }
@@ -24,10 +33,52 @@ export class PassResetPage implements OnInit {
   });
 
 
+  async presentAlertOK(){
+    const alert = await this.alertCtrl.create({
+      backdropDismiss: false,
+      header: 'Contraseña Recuperada',
+      message: 'Se ha enviado una nueva contraseña a su correo. Presione OK para continuar.',
+      buttons: [{
+        text: 'OK',
+        //Handler: se ejecutará la función cuando se presione el botón OK de la alerta.
+        handler: ()=>{
+          this.router.navigate(['/login'])
+        }
+      }]
+    });
+    await alert.present();
+  }
+
+
+  async presentAlertError() {
+    const alert = await this.alertCtrl.create({
+      
+      header: 'Datos Incorrectos',
+      message: "Usuario y/o correo incorrecto",
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
 
 
   onResetPassword(){
-    console.log(this.formularioReset.value)
+    
+    this.api.getUsuarios().subscribe((data)=>{
+      this.usuarios = data;
+
+      const usuario: Usuario = this.usuarios.find(
+        usuario => usuario.nombreUsuario === this.formularioReset.value.user
+                && usuario.email === this.formularioReset.value.email);
+      
+      if (usuario) {
+        this.presentAlertOK()
+      }
+      else{
+        this.presentAlertError()
+      }
+    })
   }
 
 }
