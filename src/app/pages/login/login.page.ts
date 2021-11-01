@@ -4,6 +4,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/Interfaces/asistencia-alumnos';
 import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
+import { DataLocalService } from 'src/app/services/data-local.service';
 
 
 
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
   constructor(private router: Router, 
               private alertCtrl: AlertController,
               private fb: FormBuilder,
-              private api: ApiAsistenciaService) { }
+              private api: ApiAsistenciaService,
+              private dataLocal: DataLocalService ) { }
 
   ngOnInit() {
   }
@@ -58,6 +60,8 @@ export class LoginPage implements OnInit {
         let navigationExtras: NavigationExtras = {
           state: {usuarioValido: usuario.nombreUsuario}
         }
+        this.dataLocal.removeUsuario();
+        this.dataLocal.setUsuario(this.formularioLogin.value.user)
         this.router.navigate(['/home'], navigationExtras)
       }
       else {

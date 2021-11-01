@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, PopoverController } from '@ionic/angular';
+import { DataLocalService } from 'src/app/services/data-local.service';
 
 @Component({
   selector: 'app-popover-usuario',
@@ -11,7 +12,8 @@ export class PopoverUsuarioComponent implements OnInit {
 
   constructor( private router:Router,
                 private popoverCtrl: PopoverController,
-                private alertCtrl: AlertController ) { }
+                private alertCtrl: AlertController,
+                private dataLocal:DataLocalService) { }
 
   ngOnInit() {}
   
@@ -25,6 +27,7 @@ export class PopoverUsuarioComponent implements OnInit {
         {
           text: 'Aceptar',
           handler: () => {
+            this.dataLocal.removeUsuario();
             this.router.navigate(['/login'])
           }
         },

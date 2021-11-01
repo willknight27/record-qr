@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataLocalService } from 'src/app/services/data-local.service';
 
 @Component({
   selector: 'app-escanear',
@@ -7,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EscanearComponent implements OnInit {
 
-  constructor() { }
+  usuarioConectado:string
 
-  ngOnInit() {}
+  constructor( private dataLocal: DataLocalService ) { }
+
+  ngOnInit() {
+    this.cargarUsuario()
+  }
+
+  async cargarUsuario(){
+    /* this.usuarioConectado = await this.dataLocal.getUsuario() */
+    this.dataLocal.getUsuario().subscribe(data =>{
+      this.usuarioConectado = data;
+    })
+    
+  }
 
 }
