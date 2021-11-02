@@ -1,3 +1,22 @@
-<p>
-  asistencia works!
-</p>
+<ion-content class="ion-padding">
+
+  <div class="ion-text-center ion-margin-top">
+    <ion-title>
+      Analista Programador
+    </ion-title>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let asistencia of todasAsistencias">
+      <ion-icon color="secondary"  slot="start" name="bookmarks-outline"></ion-icon>
+      <ion-label>
+        <h2>ID Usuario: {{asistencia.idUsuario}}</h2>
+        <p>Curso: {{asistencia.idCurso}}</p>
+        <p>Fecha:{{asistencia.fecha}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+
+
+</ion-content>

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataLocalService } from 'src/app/services/data-local.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Asistencia, Usuario } from 'src/app/Interfaces/asistencia-alumnos';
+import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
+
 
 @Component({
   selector: 'app-escanear',
@@ -8,20 +12,78 @@ import { DataLocalService } from 'src/app/services/data-local.service';
 })
 export class EscanearComponent implements OnInit {
 
-  usuarioConectado:string
+  // nombre usuario conectado
+  usuarioConectado: string
+  usuarioID: number
+  usuarios: Usuario[];
 
-  constructor( private dataLocal: DataLocalService ) { }
+  // lista de todas las aistencias
+  asistencias:Asistencia[];
+
+
+  asistencia: Asistencia = {
+
+    fecha: '',
+    idCurso: '',
+    idUsuario: null,
+  }
+
+  constructor(private dataLocal: DataLocalService,
+    private barcodeScanner: BarcodeScanner,
+    private api: ApiAsistenciaService) { }
 
   ngOnInit() {
     this.cargarUsuario()
   }
 
-  async cargarUsuario(){
+  async cargarUsuario() {
     /* this.usuarioConectado = await this.dataLocal.getUsuario() */
-    this.dataLocal.getUsuario().subscribe(data =>{
+    this.dataLocal.getUsuario().subscribe(data => {
       this.usuarioConectado = data;
     })
-    
+
+  }
+
+  /* obtenerID() {
+    this.api.getUsuarios().subscribe((data) => {
+      this.usuarios = data;
+      const usuario: Usuario = this.usuarios.find(usuario => usuario.nombreUsuario === this.usuarioConectado);
+      this.usuarioID = usuario.id;
+    })
+  } */
+
+
+  scan() {
+
+    console.log(this.usuarios)
+    this.barcodeScanner.scan().then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+
+      this.api.getUsuarios().subscribe((data) => {
+        this.usuarios = data;
+        const usuario: Usuario = this.usuarios.find(usuario => usuario.nombreUsuario === this.usuarioConectado);
+        this.usuarioID = usuario.id;
+        
+        this.asistencia.idUsuario= this.usuarioID;
+        const fecha = new Date();
+        this.asistencia.fecha = fecha.toString();
+        this.asistencia.idCurso = barcodeData.text;
+
+        this.api.getAsistencias().subscribe((data)=>{
+          this.asistencias = data
+          let conteo = this.asistencias.length
+          
+          this.api.postAsistencia(conteo,this.asistencia).subscribe(()=>{
+            console.log('asistencia creada')
+          })
+        })
+
+        
+      })
+
+    }).catch(err => {
+      console.log('Error', err);
+    });
   }
 
 }

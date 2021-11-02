@@ -1,0 +1,43 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Albania Musabeli",
+      "nombreUsuario": "al.musabeli",
+      "email": "al.musabeli@duocuc.cl",
+      "password":"duoc07",
+      "carrera":"Analista Programador"
+    },
+    {
+      "id": 2,
+      "nombre": "Williams Caballero",
+      "nombreUsuario": "wi.caballero",
+      "email": "wi.caballlero@duocuc.cl",
+      "password":"duoc27",
+      "carrera":"Analista Programador"
+    }
+  ],
+  "asistencias": [
+    {
+      "fecha": "2021-10-03",
+      "idCurso": "PGY4121-001V",
+      "idUsuario": 1
+    },
+    {
+      "fecha": "2021-10-04",
+      "idCurso": "PGY4121-001V",
+      "idUsuario": 1
+    },
+    {
+      "fecha": "2021-10-03",
+      "idCurso": "PGY4121-001V",
+      "idUsuario": 2
+    },
+    {
+      "fecha": "2021-10-04",
+      "idCurso": "PGY4121-001V",
+      "idUsuario": 2
+    }
+    
+  ]
+}

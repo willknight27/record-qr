@@ -1,3 +1,17 @@
-<p>
-  Usuario: {{usuarioConectado}}
-</p>
+<ion-content class="ion-padding">
+
+<div class="ion-text-center">
+  <img id="logo-duoc" src="assets/img/duoclogo.png" alt="">
+</div>
+
+<div>
+  <p>{{usuarioConectado}}</p>
+</div>
+
+<div class="scandiv ion-text-center">
+  <ion-button  size="medium" shape="round" (click)="scan()">
+    Escanear QR
+</ion-button>
+</div>
+
+</ion-content>
