@@ -18,7 +18,7 @@ export class EscanearComponent implements OnInit {
   usuarios: Usuario[];
 
   // lista de todas las aistencias
-  asistencias:Asistencia[];
+  asistencias: Asistencia[];
 
 
   asistencia: Asistencia = {
@@ -63,27 +63,35 @@ export class EscanearComponent implements OnInit {
         this.usuarios = data;
         const usuario: Usuario = this.usuarios.find(usuario => usuario.nombreUsuario === this.usuarioConectado);
         this.usuarioID = usuario.id;
-        
-        this.asistencia.idUsuario= this.usuarioID;
-        const fecha = new Date();
-        this.asistencia.fecha = fecha.toString();
+
+        this.asistencia.idUsuario = this.usuarioID;
+
+        const fecha = new Date().toLocaleDateString('es-ES', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }).split(' ').join(' ');
+
+        this.asistencia.fecha = fecha
         this.asistencia.idCurso = barcodeData.text;
 
-        this.api.getAsistencias().subscribe((data)=>{
+        this.api.getAsistencias().subscribe((data) => {
           this.asistencias = data
           let conteo = this.asistencias.length
-          
-          this.api.postAsistencia(conteo,this.asistencia).subscribe(()=>{
+
+          this.api.postAsistencia(conteo, this.asistencia).subscribe(() => {
             console.log('asistencia creada')
           })
         })
 
-        
+
       })
 
     }).catch(err => {
       console.log('Error', err);
     });
   }
+
+  
 
 }

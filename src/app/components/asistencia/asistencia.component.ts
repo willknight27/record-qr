@@ -15,9 +15,10 @@ export class AsistenciaComponent implements OnInit {
   usuarioConectado: string
 
   // Arrglo de asistencias
-  //asistencias:Asistencia[];
+  asistencias:Asistencia[];
   todasAsistencias : Asistencia[]
-  //usuarios:Usuario[];
+  
+  usuarios:Usuario[];
 
 
   constructor( private dataLocal: DataLocalService, private api: ApiAsistenciaService ) { }
@@ -25,9 +26,15 @@ export class AsistenciaComponent implements OnInit {
   ngOnInit() {
     this.cargarUsuario()
     this.verAsistencias()
+    
   }
 
+  ionViewDidEnter(){
+    // Actualizar la lista de asistencias
+    this.verAsistencias()
+  }
 
+  // Usuario cargado desde el localstorage
   async cargarUsuario() {
     /* this.usuarioConectado = await this.dataLocal.getUsuario() */
     this.dataLocal.getUsuario().subscribe(data => {
@@ -36,13 +43,13 @@ export class AsistenciaComponent implements OnInit {
 
   }
 
-  verAsistencias(){
+  /* verAsistencias(){
     this.api.getAsistencias().subscribe((data=>{
       this.todasAsistencias= data;
     }))
-  }
+  } */
 
-  /* verAsistencias(){
+  verAsistencias(){
 
     //obtener id de usuario segun su nombre
     this.api.getUsuarios().subscribe((data)=>{
@@ -54,6 +61,7 @@ export class AsistenciaComponent implements OnInit {
       this.api.getAsistencias().subscribe((data)=>{
         this.todasAsistencias = data
         console.log(this.todasAsistencias)
+
         // obtener las aistencias segun el id del usuario logeado
         this.asistencias = this.todasAsistencias.filter(lista => lista.idUsuario == id)
       })
@@ -61,7 +69,7 @@ export class AsistenciaComponent implements OnInit {
     })
 
     
-  } */
+  }
 
 
 }

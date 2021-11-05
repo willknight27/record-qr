@@ -19,7 +19,7 @@ export class ApiAsistenciaService {
   }
 
   // URL API FIREBASE
-  apiURL = "https://register-app7-default-rtdb.firebaseio.com";
+  apiURL = "https://registerapp7-default-rtdb.firebaseio.com";
 
   //apiURL = "http://localhost:3000";
 
@@ -39,14 +39,14 @@ export class ApiAsistenciaService {
 
   // Obtener todas las asistencias
   getAsistencias(): Observable<any> {
-    return this.http.get(this.apiURL + '/asistencia.json').pipe(
+    return this.http.get(this.apiURL + '/asistencias.json').pipe(
       retry(3)
     );
   }
 
-  // Agregar una asistencia
+  // Agregar una asistencia con Metodo PUT en Firebase (posicion del array)
   postAsistencia(id,asistencia): Observable<any> {
-    return this.http.put(this.apiURL + `/asistencia/${id}.json`,asistencia,this.httpOptions).pipe(
+    return this.http.put(this.apiURL + `/asistencias/${id}.json`,asistencia,this.httpOptions).pipe(
       retry(3)
     );
   } 
