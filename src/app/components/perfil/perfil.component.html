@@ -11,14 +11,17 @@
 
       <ion-grid>
         <ion-row>
-          <ion-col>
-
+          <ion-col size="2">
             <div class="barra-vertical ion-text-center">
               <ion-icon class="color-texto-header" size="large" name="code-outline"></ion-icon>
             </div>
           </ion-col>
+          <ion-col size="1"></ion-col>
           <ion-col>
-
+            <h2 class="carrera" class="ion-padding-left">{{usuario.carrera}}</h2>
+            <p>Usuario: {{usuario.nombreUsuario}}</p>
+            <p>Correo: {{usuario.email}}</p>
+            
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -32,14 +35,16 @@
 
       <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col size="2">
 
             <div class="barra-vertical ion-text-center">
               <ion-icon class="color-texto-header" size="large" name="code-outline"></ion-icon>
             </div>
           </ion-col>
+          <ion-col size="1"></ion-col>
           <ion-col>
-
+            <h2 class="carrera" class="ion-padding-left">{{usuario.nombre}}</h2>
+            <p>Rut: {{usuario.rut}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>

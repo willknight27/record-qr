@@ -6,6 +6,7 @@ export interface Usuario {
     email:string;
     password:string;
     carrera:string;
+    rut:string;
 }
 
 
