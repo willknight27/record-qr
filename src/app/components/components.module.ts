@@ -5,6 +5,7 @@ import { EscanearComponent } from './escanear/escanear.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { IonicModule } from '@ionic/angular';
 import { PopoverUsuarioComponent } from './popover-usuario/popover-usuario.component';
+import { MaterialModule } from '../material/material.module';
 
 
 
@@ -17,7 +18,8 @@ import { PopoverUsuarioComponent } from './popover-usuario/popover-usuario.compo
   ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    MaterialModule
   ],
   exports:[
     AsistenciaComponent,

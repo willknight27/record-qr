@@ -11,6 +11,8 @@ import { DataLocalService } from 'src/app/services/data-local.service';
 })
 export class AsistenciaComponent implements OnInit {
 
+  panelOpenState = false;
+
   // Usuario conectado guardado en el localStorage
   usuarioConectado: string
 

@@ -1,15 +1,15 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header >
+  <ion-toolbar class="new-background-color">
     
 
-    <ion-title>Inicio</ion-title>
+    <ion-title class="color-texto-header">Register App</ion-title>
 
     <ion-buttons slot="end">
 
 
       <ion-button (click)="presentPopover($event)">
-        <ion-icon name="person-outline"></ion-icon>
-        <ion-label *ngIf="usuarioConectado">{{ usuarioConectado }}</ion-label>
+        <ion-icon class="color-texto-header" name="person-outline"></ion-icon>
+        <ion-label class="color-texto-header" *ngIf="usuarioConectado">{{ usuarioConectado }}</ion-label>
       </ion-button>
 
     </ion-buttons>

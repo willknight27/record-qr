@@ -1,20 +1,37 @@
-<ion-content class="ion-padding">
+<ion-content class="contenido-asistencias">
 
-  <div class="ion-text-center ion-margin-top">
+  <div class="ion-text-center ion-margin-top ion-margin-bottom">
     <ion-title>
       Registro de Asistencias
     </ion-title>
   </div>
 
-  <ion-list class="ion-padding-top">
-    <ion-item *ngFor="let asistencia of asistencias">
-      <ion-icon color="secondary"  slot="start" name="bookmarks-outline"></ion-icon>
-      <ion-label>
-        <p>Curso: {{asistencia.idCurso}}</p>
-        <p>Fecha: {{asistencia.fecha}}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+
+  <mat-accordion class="panel">
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Asistencias
+        </mat-panel-title>
+        <mat-panel-description>
+          Segundo Semestre 2021
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ion-list>
+        <ion-item *ngFor="let asistencia of asistencias">
+          <ion-icon color="secondary"  slot="start" name="bookmarks-outline"></ion-icon>
+          <ion-label>
+            <p>Curso: {{asistencia.idCurso}}</p>
+            <p>Fecha: {{asistencia.fecha}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+  
 
 
 
