@@ -62,6 +62,7 @@ export class LoginPage implements OnInit {
         }
         this.dataLocal.removeUsuario();
         this.dataLocal.setUsuario(this.formularioLogin.value.user)
+        localStorage.setItem('isLogin','1')  
         this.router.navigate(['/home'], navigationExtras)
       }
       else {

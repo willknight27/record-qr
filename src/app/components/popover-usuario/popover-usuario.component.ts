@@ -28,6 +28,7 @@ export class PopoverUsuarioComponent implements OnInit {
           text: 'Aceptar',
           handler: () => {
             this.dataLocal.removeUsuario();
+            localStorage.removeItem('isLogin');
             this.router.navigate(['/login'])
           }
         },

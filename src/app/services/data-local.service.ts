@@ -7,6 +7,7 @@ import { filter, switchMap} from 'rxjs/operators';
 
 
 const STORAGE = 'userLogin'
+const LOGIN = ' login'
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,19 @@ export class DataLocalService {
     return this.storage.remove(STORAGE)
   }
 
+
+  // LOGIN
+
+  async setLogin(login){
+    return this.storage.set(LOGIN,login)
+  }
+
+  async getLogin(){
+    return this.storage.get(LOGIN)
+  }
+
+  async removeLogin(){
+    return this.storage.remove(LOGIN)
+  }
 
 }
