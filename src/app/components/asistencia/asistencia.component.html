@@ -1,9 +1,53 @@
 <ion-content class="contenido-asistencias">
 
   <div class="ion-text-center ion-margin-top ion-margin-bottom">
-    <ion-title>
-      Registro de Asistencias
-    </ion-title>
+<h2>Registro de Asistencias</h2>
+  </div>
+
+  <div class="ion-padding-bottom">
+
+<mat-accordion class="panel">
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Asistencias
+        </mat-panel-title>
+        <mat-panel-description>
+          Primer Semestre 2021
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ion-list>
+        <ion-item>
+          <ion-icon color="secondary"  slot="start" name="bookmarks-outline"></ion-icon>
+          <ion-label>
+            <p>Curso: MAT4140-002V</p>
+            <p>Fecha: 15-03-2021</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="secondary"  slot="start" name="bookmarks-outline"></ion-icon>
+          <ion-label>
+            <p>Curso: MAT4140-002V</p>
+            <p>Fecha: 15-03-2021</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="secondary"  slot="start" name="bookmarks-outline"></ion-icon>
+          <ion-label>
+            <p>Curso: MAT4140-002V</p>
+            <p>Fecha: 15-03-2021</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+
   </div>
 
 
