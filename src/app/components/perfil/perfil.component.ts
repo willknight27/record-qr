@@ -15,6 +15,7 @@ export class PerfilComponent implements OnInit {
   
   // Usuarios
   usuarios:Usuario[];
+
   usuario:Usuario;
 
   // Usuario conectado guardado en el localStorage
@@ -23,6 +24,13 @@ export class PerfilComponent implements OnInit {
   ngOnInit() { 
     this.cargarUsuario()
     this.getDatosUsuario()
+  }
+
+  ionViewDidEnter(){
+    this.cargarUsuario()
+    // Actualizar la lista de asistencias
+    this.getDatosUsuario()
+
   }
 
   // Usuario cargado desde el localstorage
@@ -39,10 +47,11 @@ export class PerfilComponent implements OnInit {
     //Obtener a todos los usuarios
     this.api.getUsuarios().subscribe((data=>{
       this.usuarios= data;
-
+      
       // Obtener objeto del usuario conectado
-      let usuario = this.usuarios.find(usuario => usuario.nombreUsuario === this.usuarioConectado)
-      this.usuario = usuario
+      const usuarioLogin = this.usuarios.find(usuario => usuario.nombreUsuario === this.usuarioConectado)
+      
+      this.usuario = usuarioLogin;
     }))
 
   }
