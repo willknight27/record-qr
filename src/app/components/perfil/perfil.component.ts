@@ -34,11 +34,11 @@ export class PerfilComponent implements OnInit {
   }
 
   // Usuario cargado desde el localstorage
-  async cargarUsuario() {
+  cargarUsuario() {
     /* this.usuarioConectado = await this.dataLocal.getUsuario() */
-    this.dataLocal.getUsuario().subscribe(data => {
-      this.usuarioConectado = data;
-    })
+    this.usuarioConectado = localStorage.getItem('usuario');
+    
+
   }
 
   // Usuario conectado

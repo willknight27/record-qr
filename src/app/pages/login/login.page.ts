@@ -61,7 +61,7 @@ export class LoginPage implements OnInit {
           state: {usuarioValido: usuario.nombreUsuario}
         }
         this.dataLocal.removeUsuario();
-        this.dataLocal.setUsuario(this.formularioLogin.value.user)
+        localStorage.setItem('usuario', this.formularioLogin.value.user)
         localStorage.setItem('isLogin','1')  
         this.router.navigate(['/home'], navigationExtras)
       }
