@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, PopoverController } from '@ionic/angular';
-import { DataLocalService } from 'src/app/services/data-local.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({

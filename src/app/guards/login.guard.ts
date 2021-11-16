@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanLoad, Route, Router, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { DataLocalService } from '../services/data-local.service';
 import { StorageService } from '../services/storage.service';
 
 @Injectable({

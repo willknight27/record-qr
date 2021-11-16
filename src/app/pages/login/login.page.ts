@@ -4,7 +4,6 @@ import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/Interfaces/asistencia-alumnos';
 import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
-import { DataLocalService } from 'src/app/services/data-local.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 
