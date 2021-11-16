@@ -3,6 +3,7 @@ import { DataLocalService } from 'src/app/services/data-local.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Asistencia, Usuario } from 'src/app/Interfaces/asistencia-alumnos';
 import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class EscanearComponent implements OnInit {
     idUsuario: null,
   }
 
-  constructor(private dataLocal: DataLocalService,
+  constructor(private storage: StorageService,
     private barcodeScanner: BarcodeScanner,
     private api: ApiAsistenciaService) { }
 
@@ -38,7 +39,7 @@ export class EscanearComponent implements OnInit {
 
   cargarUsuario() {
     /* this.usuarioConectado = await this.dataLocal.getUsuario() */
-    this.usuarioConectado = localStorage.getItem('usuario');
+    this.usuarioConectado = this.storage.getUsuario();
   }
 
   /* obtenerID() {

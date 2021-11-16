@@ -21,8 +21,6 @@ export class ApiAsistenciaService {
   // URL API FIREBASE
   apiURL = "https://registerapp7-default-rtdb.firebaseio.com";
 
-  //apiURL = "http://localhost:3000";
-
   constructor(private http: HttpClient) { }
 
   // Obtener todos los usuarios
@@ -50,29 +48,5 @@ export class ApiAsistenciaService {
       retry(3)
     );
   } 
-
-
-  // METODOS API LOCAL
-
-  /* getUsuarios(): Observable<any> {
-    return this.http.get(this.apiURL + '/usuarios/').pipe(
-      retry(3)
-    );
-  }
-
-  getAsistencias(): Observable<any> {
-    return this.http.get(this.apiURL + '/asistencias/').pipe(
-      retry(3)
-    );
-  }
-
-  postAsistencia(asistencia): Observable<any> {
-    return this.http.post(this.apiURL + '/asistencias/',asistencia,this.httpOptions).pipe(
-      retry(3)
-    );
-  } */
-
-
-
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/Interfaces/asistencia-alumnos';
 import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
 import { DataLocalService } from 'src/app/services/data-local.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-perfil',
@@ -11,7 +12,7 @@ import { DataLocalService } from 'src/app/services/data-local.service';
 export class PerfilComponent implements OnInit {
 
   constructor(private api: ApiAsistenciaService,
-    private dataLocal: DataLocalService) { }
+    private storage: StorageService) { }
   
   // Usuarios
   usuarios:Usuario[];
@@ -35,10 +36,7 @@ export class PerfilComponent implements OnInit {
 
   // Usuario cargado desde el localstorage
   cargarUsuario() {
-    /* this.usuarioConectado = await this.dataLocal.getUsuario() */
-    this.usuarioConectado = localStorage.getItem('usuario');
-    
-
+    this.usuarioConectado = this.storage.getUsuario();
   }
 
   // Usuario conectado

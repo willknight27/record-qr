@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanLoad, Route, Router, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataLocalService } from '../services/data-local.service';
+import { StorageService } from '../services/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ import { DataLocalService } from '../services/data-local.service';
 export class LoginGuard implements CanLoad {
 
 
-  constructor( private dataLocal: DataLocalService, private router: Router ){}
+  constructor( private storage: StorageService, private router: Router ){}
 
   canLoad() {
 
-    const isLogin = !!(+localStorage.getItem('isLogin'))
+    const isLogin = !!(+this.storage.getLogin())
 
     if (isLogin) {
       return true

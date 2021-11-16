@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Asistencia, Usuario } from 'src/app/Interfaces/asistencia-alumnos';
 import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
 import { DataLocalService } from 'src/app/services/data-local.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class AsistenciaComponent implements OnInit {
   usuarios:Usuario[];
 
 
-  constructor( private dataLocal: DataLocalService, private api: ApiAsistenciaService ) { }
+  constructor( private storage: StorageService, private api: ApiAsistenciaService ) { }
 
   ngOnInit() {
     this.cargarUsuario()
@@ -39,7 +40,7 @@ export class AsistenciaComponent implements OnInit {
   // Usuario cargado desde el localstorage
   cargarUsuario() {
     /* this.usuarioConectado = await this.dataLocal.getUsuario() */
-    this.usuarioConectado = localStorage.getItem('usuario');
+    this.usuarioConectado = this.storage.getUsuario();
     
 
   }
