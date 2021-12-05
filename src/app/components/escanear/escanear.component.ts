@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { Asistencia, Usuario } from 'src/app/Interfaces/asistencia-alumnos';
+import { Asistencia, QrJSON, Usuario } from 'src/app/Interfaces/asistencia-alumnos';
 import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -26,6 +26,16 @@ export class EscanearComponent implements OnInit {
     fecha: '',
     idCurso: '',
     idUsuario: null,
+  }
+
+  // Estructura QR JSON
+  qrJSON: QrJSON = {
+
+    idAsignatura: "",
+    seccion: "",
+    asignatura: "",
+    docente: "",
+    correo: "",
   }
 
   constructor(private storage: StorageService,
@@ -70,8 +80,16 @@ export class EscanearComponent implements OnInit {
         }).split(' ').join(' ');
 
         this.asistencia.fecha = fecha
-        this.asistencia.idCurso = barcodeData.text;
+        // this.asistencia.idCurso = barcodeData.text;
 
+        /* Convertir el text del qr a objeto javascript*/
+
+        this.qrJSON = JSON.parse(barcodeData.text)
+        this.asistencia.idCurso = this.qrJSON.asignatura + '-' + this.qrJSON.seccion;
+
+
+
+        // Obtener todas las asistencias para contar cuantos objetos tiene el array en firebase
         this.api.getAsistencias().subscribe((data) => {
           this.asistencias = data
           let conteo = this.asistencias.length

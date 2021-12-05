@@ -17,3 +17,12 @@ export interface Asistencia {
     idUsuario: number;
 }
 
+export interface QrJSON {
+
+    idAsignatura:string;
+    seccion:string;
+    asignatura:string;
+    docente:string;
+    correo:string;
+
+}
