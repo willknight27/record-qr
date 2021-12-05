@@ -82,10 +82,9 @@ export class EscanearComponent implements OnInit {
         this.asistencia.fecha = fecha
         // this.asistencia.idCurso = barcodeData.text;
 
-        /* Convertir el text del qr a objeto javascript*/
-
+        /* Convertir el text del QR a objeto javascript*/
         this.qrJSON = JSON.parse(barcodeData.text)
-        this.asistencia.idCurso = this.qrJSON.asignatura + '-' + this.qrJSON.seccion;
+        this.asistencia.idCurso = this.qrJSON.idAsignatura + '-' + this.qrJSON.seccion;
 
 
 
