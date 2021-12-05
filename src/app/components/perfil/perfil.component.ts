@@ -16,7 +16,15 @@ export class PerfilComponent implements OnInit {
   // Usuarios
   usuarios:Usuario[];
 
-  usuario:Usuario;
+  usuario:Usuario = {
+    id: 0,
+    nombre:  '',
+    nombreUsuario: '',
+    email: '',
+    password: '',
+    carrera: '',
+    rut: '',
+  };
 
   // Usuario conectado guardado en el localStorage
   usuarioConectado: string

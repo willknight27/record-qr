@@ -22,6 +22,20 @@ export class AsistenciaComponent implements OnInit {
   
   usuarios:Usuario[];
 
+  usuario:Usuario = {
+    
+    id: 0,
+    nombre:  '',
+    nombreUsuario: '',
+    email: '',
+    password: '',
+    carrera: '',
+    rut: '',
+  };
+
+  // ID del usuario que inicia sesion
+  id:number = 0;
+
 
   constructor( private storage: StorageService, private api: ApiAsistenciaService ) { }
 
@@ -55,8 +69,8 @@ export class AsistenciaComponent implements OnInit {
     //obtener id de usuario segun su nombre
     this.api.getUsuarios().subscribe((data)=>{
       this.usuarios =data
-      let usuario = this.usuarios.find(usuario => usuario.nombreUsuario === this.usuarioConectado)
-      let id = usuario.id
+      this.usuario = this.usuarios.find(usuario => usuario.nombreUsuario === this.usuarioConectado)
+      this.id = this.usuario.id
 
       // Obtener todos las asistencias
       this.api.getAsistencias().subscribe((data)=>{
@@ -64,7 +78,7 @@ export class AsistenciaComponent implements OnInit {
         console.log(this.todasAsistencias)
 
         // obtener las aistencias segun el id del usuario logeado
-        this.asistencias = this.todasAsistencias.filter(lista => lista.idUsuario == id)
+        this.asistencias = this.todasAsistencias.filter(lista => lista.idUsuario == this.id)
       })
 
     })

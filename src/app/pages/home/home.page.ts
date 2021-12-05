@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
 }
 
 ngOnInit() {
-  this.router.navigate(['home/escanear']);
+  // this.router.navigate(['home/escanear']);
 }
 
   async presentPopover(ev: any) {

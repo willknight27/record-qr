@@ -35,6 +35,7 @@
     "@ionic/storage-angular": "^3.0.6",
     "cordova-plugin-email-composer": "^0.10.0",
     "cordova-sqlite-storage": "^6.0.0",
+    "karma-firefox-launcher": "^2.1.2",
     "localforage-cordovasqlitedriver": "^1.8.0",
     "lottie-web": "^5.7.14",
     "ngx-lottie": "^7.0.4",
