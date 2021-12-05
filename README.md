@@ -33,6 +33,12 @@ npm install @ionic-native/barcode-scanner
 ionic cap sync
 ```
 
+```
+npm install cordova-plugin-email-composer
+npm install @ionic-native/email-composer
+ionic cap sync
+```
+
 ## Comandos para android
 
 ```
