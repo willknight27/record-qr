@@ -16,6 +16,9 @@ import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 // QR
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
+// Email Composer
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -30,7 +33,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
       driverOrder: [CordovaSQLiteDriver._driver, Drivers.IndexedDB, Drivers.LocalStorage]
     })
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },BarcodeScanner],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },BarcodeScanner,EmailComposer],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

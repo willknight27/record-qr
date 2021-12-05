@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { Asistencia, QrJSON, Usuario } from 'src/app/Interfaces/asistencia-alumnos';
+import { Asistencia, Email, QrJSON, Usuario } from 'src/app/Interfaces/asistencia-alumnos';
 import { ApiAsistenciaService } from 'src/app/services/api-asistencia.service';
+import { EmailService } from 'src/app/services/email.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 
@@ -40,7 +41,8 @@ export class EscanearComponent implements OnInit {
 
   constructor(private storage: StorageService,
     private barcodeScanner: BarcodeScanner,
-    private api: ApiAsistenciaService) { }
+    private api: ApiAsistenciaService,
+    private servicioEmail: EmailService) { }
 
   ngOnInit() {
     this.cargarUsuario()
@@ -95,6 +97,15 @@ export class EscanearComponent implements OnInit {
 
           this.api.postAsistencia(conteo, this.asistencia).subscribe(() => {
             console.log('asistencia creada')
+
+
+            // formulario correo
+            this.servicioEmail.email.to = this.qrJSON.correo;
+            this.servicioEmail.email.cc = usuario.email;
+            this.servicioEmail.email.body = `Asignatura: ${this.qrJSON.asignatura}\nSección: ${this.asistencia.idCurso}\nFecha Asistencia: ${fecha}`
+            
+            //Abrir app de correo
+            this.servicioEmail.enviarEmail(this.servicioEmail.email);
           })
         })
 
