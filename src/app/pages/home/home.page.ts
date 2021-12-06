@@ -10,6 +10,8 @@ import { PopoverUsuarioComponent } from 'src/app/components/popover-usuario/popo
 })
 export class HomePage implements OnInit {
 
+  linkHome:string = 'home/escanear';
+
   usuarioConectado: string;
   //fecha = new Date;
 
@@ -27,7 +29,7 @@ export class HomePage implements OnInit {
 }
 
 ngOnInit() {
-  // this.router.navigate(['home/escanear']);
+  this.router.navigate([this.linkHome]);
 }
 
   async presentPopover(ev: any) {

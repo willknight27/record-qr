@@ -10,7 +10,7 @@ import { PassResetPage } from './pass-reset.page';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('PassResetPage', () => {
+describe(' TEST PassResetPage', () => {
   let component: PassResetPage;
   let fixture: ComponentFixture<PassResetPage>;
 
@@ -36,7 +36,64 @@ describe('PassResetPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it('Pagina instanciada de forma correcta', () => {
     expect(component).toBeTruthy();
+  });
+
+
+  //Test de formulario invalido con un solo dato
+  it('Formulario invalido',()=>{
+
+    const fixture = TestBed.createComponent(PassResetPage);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const usuario = app.formularioReset.controls['user'];
+    usuario.setValue('al.musabeli')
+
+    // Probar que el formulario sea invalido si faltan datos
+    expect(app.formularioReset.invalid).toBeTrue();
+  });
+
+
+
+  //Test de formulario valido con datos correctos
+  it('Formulario valido',()=>{
+
+    const fixture = TestBed.createComponent(PassResetPage);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    let formulario = app.formularioReset
+    let user = app.formularioReset.controls['user']
+    let email = app.formularioReset.controls['email']
+
+    user.setValue('al.musabeli')
+    email.setValue('al.musabeli@gmail.com')
+
+    //Probar que el formulario este valido
+    expect(formulario.invalid).toBeFalse()
+
+  })
+
+
+
+  //Test de formulario invalido con email incorrecto
+  it('Formulario invalido Email con formato incorrecto',()=>{
+
+    const fixture = TestBed.createComponent(PassResetPage);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    let formulario = app.formularioReset
+    let user = app.formularioReset.controls['user']
+    let email = app.formularioReset.controls['email']
+
+    user.setValue('al.musabeli')
+    email.setValue('al.musabeligmail.com')
+
+    //Probar que el formulario este invalido
+    expect(app.formularioReset.invalid).toBeTrue();
+
   });
 });

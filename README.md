@@ -55,3 +55,15 @@ ionic capacitor copy android
 ```
 ionic capacitor open android
 ```
+
+## TEST
+
+```
+ng test
+```
+
+### Generar informe de cobertura
+
+```
+ng test --no-watch --code-coverage
+```
